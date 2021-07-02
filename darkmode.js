@@ -1,40 +1,38 @@
-a{
-	color:#eb136d;
-	text-decoration: none;
+var darkMode = window.localStorage.getItem('darkMode');
+if(!darkMode){
+	darkMode =  false;
+}
+else if(darkMode === "true"){
+	darkMode = true;
+}
+else{
+	darkMode = false;
+}
+mode();
+
+
+function darkToggle(){
+	toggle();
+	mode();
 }
 
-nav a, footer div a{
-	margin:0px 5px;
+function mode(){
+	var button = document.getElementById("dark-button");
+	if(darkMode || darkMode){
+		document.body.classList.add("dark");
+		document.getElementById("container").classList.add('darkpanel');
+		document.getElementById("container").classList.remove('panel-content');
+		button.innerText = "Light Mode";
+	}
+	else{
+		document.body.classList.remove("dark");
+		document.getElementById("container").classList.remove('darkpanel');
+		document.getElementById("container").classList.add('panel-content');
+		button.innerText = "Dark Mode";
+	}
 }
 
-footer{
-	margin-top:40px;
-	text-align: center;
-}
-
-body{
-	font-family: Arial;
-	margin: auto;
-	padding:18px;
-	max-width: 600px;
-	font-size:18px;
-	text-align: left;
-	background-color:white;
-	position: relative;
-}
-
-#dark-button{
-	bottom:10px;
-	right:20px;
-	position: absolute;
-}
-
-.dark{
-	color:#f5d142;
-	background-color: black;
-}
-
-img, video{
-	max-width: 600px;
-	border: 2px solid #eba613;
+function toggle(){
+	darkMode = !darkMode;
+	window.localStorage.setItem('darkMode',darkMode);	
 }
